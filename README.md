@@ -10,6 +10,8 @@
   npx create-expo-app DiccionarioLSC (Nueva version)
 
 - Instalar react navegation:
+  npm install @react-navigation/native-stack react-native-screens react-native-safe-area-context
+  o
   npm install @react-navigation/native react-native-screens react-native-safe-area-context
 
 - Instalar axios o fetch para realizar solicitudes HTTP:
