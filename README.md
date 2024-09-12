@@ -18,4 +18,7 @@
   npm install axios
   npm install fetch
 
+- Instalar los temas de las letras:
+  npm install expo-font
+
 - Iniciar el proyecto: npx expo start
