@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         textAlign: "center",//centrar el texto 
         fontWeight: "bold", //bold
         color: "white",
-        textDecorationLine: "underline", //linea
+        //textDecorationLine: "underline", //linea
         fontStyle: "italic",
         textShadowColor: "#000",//negro
         textShadowOffset: { width: 5, height: 5 },//que tanto se muestra la sombra

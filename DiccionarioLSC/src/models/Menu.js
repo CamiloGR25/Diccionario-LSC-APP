@@ -124,9 +124,6 @@ const style = StyleSheet.create({
         backgroundColor: "#0e1788",
         position: "relative",
         alignItems: 'center',
-        /*flexDirection: 'row',
-        justifyContent: 'flex-end',*/
-
     },
     logoimg: {
         width: "80%",//ancho
@@ -160,12 +157,6 @@ const style = StyleSheet.create({
         bottom: 30, //margen que tendra el objeto
 
     },
-    contenedorOpciones: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: "28%"
-    },
     textoBoton: {
         //color: "white",
         fontWeight: "bold",
@@ -173,6 +164,12 @@ const style = StyleSheet.create({
         /*textShadowColor: "#ffffff",
         textShadowOffset: { width: 2, height: 2 },//que tanto se muestra la sombra
         textShadowRadius: 1*/
+    },
+    contenedorOpciones: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: "28%"
     },
     opcionBtn: {
         width: 150,
