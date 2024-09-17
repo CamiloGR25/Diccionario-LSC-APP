@@ -6,7 +6,7 @@ import Alfabeto from './src/models/Alfabeto';
 import Buscar from './src/models/Buscar';
 import Categorias from './src/models/Categorias';
 import Practicas from './src/models/Practicas'
-
+import Letras from './src/models/Letras';
 
 const stack = createNativeStackNavigator(); //se crea el objeto para navegar
 
@@ -21,6 +21,7 @@ function App() {
         <stack.Screen name="Buscar" component={Buscar} />
         <stack.Screen name="Categorias" component={Categorias} />
         <stack.Screen name="Practicas" component={Practicas} />
+        <stack.Screen name="Letras" component={Letras} />
       </stack.Navigator>
     </NavigationContainer>
   );
