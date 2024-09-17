@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar'; //para controlar el stado o estilo
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native'; //navegar
 import { Text, StyleSheet, View, Image, TouchableOpacity, Alert } from 'react-native'; //importar los componentes usados en el codigo
 
+//inicio de la funcion llamada para mostrar en pantalla
 export default function Inicio() {
-    //const navigation = useNavigation(); //navegacion a otras pantallas
+    const navegacion = useNavigation(); //navegacion a otras pantallas
 
     return (
         <View style={styles.container}>
@@ -17,13 +18,13 @@ export default function Inicio() {
 
             <Image
                 style={styles.inicioImg}
-                source={require("../img/ImgInicio.png")}
+                source={require("../img/ImgInicioSinFondo.png")}
             />
 
-            <TouchableOpacity style=
-                {styles.boton}
+            <TouchableOpacity style={styles.boton}
                 onPress={() => {
-                    alert("Boton Iniciar")
+                    navegacion.navigate("Menu")
+                    //alert("Boton Iniciar")
                 }}
             >
                 <Text style={styles.textoBoton}>INICIAR</Text>
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     },
 
     inicioImg: {
-        width: "50%", //ancho
+        width: "55%", //ancho
         height: "30%", //alto
         resizeMode: "contain", //que se adapte uniformemente u no se corte la img
         marginTop: "2%",
