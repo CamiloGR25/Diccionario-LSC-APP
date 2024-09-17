@@ -24,14 +24,13 @@ export default function Menu() {
                     <TouchableOpacity
                         //BUSCAR
                         onPress={() => {
-                            alert("Entrando a la pantalla buscar")
-                            console.log("Entrando a la pantalla buscar")
+                            //console.log("Entrando a la pantalla buscar");
+                            navegacion.navigate("Buscar");
                         }}
                     >
                         <View style={style.opcionBtn}>
                             <Image
                                 style={style.imagenOpcion}
-                                //source={require("../img/Logo2.png")}
                                 source={require("../img/LupaNegra.png")}
                             />
                             <Text style={style.textoOpcion}>
@@ -43,7 +42,8 @@ export default function Menu() {
                     <TouchableOpacity
                         //CATEGORIA
                         onPress={() => {
-                            alert("Entrando a la pantalla categoria")
+                            //console.log("Entrando a la pantalla categoria");
+                            navegacion.navigate("Categorias");
                         }}
                     >
                         <View style={style.opcionBtn}>
@@ -64,7 +64,8 @@ export default function Menu() {
                     <TouchableOpacity
                         //ALFABETO
                         onPress={() => {
-                            alert("Entrando a la pantalla Alfabeto")
+                            //console.log("Entrando a la pantalla Alfabeto");
+                            navegacion.navigate("Alfabeto");
                         }}
                     >
                         <View style={style.opcionBtn}>
@@ -82,7 +83,8 @@ export default function Menu() {
                     <TouchableOpacity
                         //PRACTICAR
                         onPress={() => {
-                            alert("Emtrando a la pantalla practicar")
+                            //console.log("Emtrando a la pantalla practicar");
+                            navegacion.navigate("Practicas");
                         }}
                     >
                         <View style={style.opcionBtn}>
@@ -92,7 +94,7 @@ export default function Menu() {
                                 source={{ uri: "https://media-public.canva.com/nei8U/MAEFiOnei8U/1/tl.png" }}
                             />
                             <Text style={style.textoOpcion}>
-                                PRACTICAR
+                                PRACTICAS
                             </Text>
                         </View>
                     </TouchableOpacity>
