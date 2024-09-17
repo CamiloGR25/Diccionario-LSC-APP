@@ -14,84 +14,90 @@ export default function Menu() {
                 source={require("../img/Logo2.png")}
             />
 
-            <Text style={style.titulo}>
-                MENÚ
-            </Text>
+            <View style={style.contenedorOpciones}>
 
-            <View style={{ flexDirection: "row" /*alineacion de elementos*/ }}>
-                <TouchableOpacity
-                    onPress={() => {
-                        alert("Entrando a la pantalla buscar")
-                    }}
-                >
-                    <View style={style.opcionBtn}>
-                        <Image
-                            style={style.imagenOpcion}
-                            //source={require("../img/Logo2.png")}
-                            source={{ uri: "https://media-public.canva.com/mbVQ4/MADwTymbVQ4/1/tl.png" }}
-                        />
-                        <Text style={style.textoOpcion}>
-                            BUSCAR
-                        </Text>
-                    </View>
-                </TouchableOpacity>
+                <Text style={style.titulo}>
+                    MENÚ
+                </Text>
 
-                <TouchableOpacity
-                    onPress={() => {
-                        alert("Entrando a la pantalla categoria")
-                    }}
-                >
-                    <View style={style.opcionBtn}>
-                        <Image
-                            style={style.imagenOpcion}
-                            //source={require("../img/Logo2.png")}
-                            source={{ uri: "https://media-public.canva.com/mbVQ4/MADwTymbVQ4/1/tl.png" }}
-                        />
-                        <Text style={style.textoOpcion}>
-                            CATEGORIAS
-                        </Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+                <View style={{ flexDirection: "row" /*alineacion de elementos*/ }}>
+                    <TouchableOpacity
+                        //BUSCAR
+                        onPress={() => {
+                            alert("Entrando a la pantalla buscar")
+                            console.log("Entrando a la pantalla buscar")
+                        }}
+                    >
+                        <View style={style.opcionBtn}>
+                            <Image
+                                style={style.imagenOpcion}
+                                //source={require("../img/Logo2.png")}
+                                source={require("../img/LupaNegra.png")}
+                            />
+                            <Text style={style.textoOpcion}>
+                                BUSCAR
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
 
-            <View style={{ flexDirection: "row" /*alineacion de elementos*/ }}>
+                    <TouchableOpacity
+                        //CATEGORIA
+                        onPress={() => {
+                            alert("Entrando a la pantalla categoria")
+                        }}
+                    >
+                        <View style={style.opcionBtn}>
+                            <Image
+                                style={style.imagenOpcion}
+                                //source={require("../img/Logo2.png")}
+                                source={{ uri: "https://media-public.canva.com/EKKdc/MAEGkaEKKdc/1/tl.png" }}
+                            />
+                            <Text style={style.textoOpcion}>
+                                CATEGORIAS
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
 
-                <TouchableOpacity
-                    onPress={() => {
-                        alert("Entrando a la pantalla Alfabeto")
-                    }}
-                >
-                    <View style={style.opcionBtn}>
-                        <Image
-                            style={style.imagenOpcion}
-                            //source={require("../img/Logo2.png")}
-                            source={{ uri: "https://media-public.canva.com/mbVQ4/MADwTymbVQ4/1/tl.png" }}
-                        />
-                        <Text style={style.textoOpcion}>
-                            ALFABETO
-                        </Text>
-                    </View>
-                </TouchableOpacity>
+                <View style={{ flexDirection: "row" /*alineacion de elementos*/ }}>
 
-                <TouchableOpacity
-                    onPress={() => {
-                        alert("Emtrando a la pantalla practicar")
-                    }}
-                >
-                    <View style={style.opcionBtn}>
-                        <Image
-                            style={style.imagenOpcion}
-                            //source={require("../img/Logo2.png")}
-                            source={require("../img/LupaNegra.png")}
-                        />
-                        <Text style={style.textoOpcion}>
-                            PRACTICAR
-                        </Text>
-                    </View>
+                    <TouchableOpacity
+                        //ALFABETO
+                        onPress={() => {
+                            alert("Entrando a la pantalla Alfabeto")
+                        }}
+                    >
+                        <View style={style.opcionBtn}>
+                            <Image
+                                style={style.imagenOpcion}
+                                //source={require("../img/Logo2.png")}
+                                source={{ uri: "https://media-public.canva.com/8mHSM/MAE6UG8mHSM/1/tl.png" }}
+                            />
+                            <Text style={style.textoOpcion}>
+                                ALFABETO
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
 
-                </TouchableOpacity>
+                    <TouchableOpacity
+                        //PRACTICAR
+                        onPress={() => {
+                            alert("Emtrando a la pantalla practicar")
+                        }}
+                    >
+                        <View style={style.opcionBtn}>
+                            <Image
+                                style={style.imagenOpcion}
+                                //source={require("../img/Logo2.png")}
+                                source={{ uri: "https://media-public.canva.com/nei8U/MAEFiOnei8U/1/tl.png" }}
+                            />
+                            <Text style={style.textoOpcion}>
+                                PRACTICAR
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
 
-
+                </View>
             </View>
 
             <TouchableOpacity style={style.boton}
@@ -109,6 +115,7 @@ export default function Menu() {
     );
 }
 
+
 const style = StyleSheet.create({
     container: {
         flex: 1, //ocupa toda la pantalla
@@ -124,7 +131,7 @@ const style = StyleSheet.create({
         height: 130,//alto
         resizeMode: 'contain',//que se adapte uniformemente u no se corte la img
         position: 'absolute',
-        top: 30,
+        top: 20,
         right: "40%"
     },
     titulo: {
@@ -133,6 +140,9 @@ const style = StyleSheet.create({
         textAlign: "center",//centrar el texto 
         fontWeight: "bold", //bold
         color: "white",
+        textShadowColor: "#000",//negro
+        textShadowOffset: { width: 5, height: 5 },//que tanto se muestra la sombra
+        textShadowRadius: 10, //el radio de la sombra
         //fontStyle: "italic", //que el texto se incline
         marginTop: "42%",
         bottom: "2%"
@@ -148,10 +158,19 @@ const style = StyleSheet.create({
         bottom: 30, //margen que tendra el objeto
 
     },
+    contenedorOpciones: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: "28%"
+    },
     textoBoton: {
         //color: "white",
         fontWeight: "bold",
         fontSize: 22,
+        /*textShadowColor: "#ffffff",
+        textShadowOffset: { width: 2, height: 2 },//que tanto se muestra la sombra
+        textShadowRadius: 1*/
     },
     opcionBtn: {
         width: 150,
@@ -174,7 +193,10 @@ const style = StyleSheet.create({
     textoOpcion: {
         fontWeight: "bold",
         fontSize: 22,
-        color: "white"
+        color: "white",
+        textShadowColor: "#000",//negro
+        textShadowOffset: { width: 2, height: 2 },//que tanto se muestra la sombra
+        textShadowRadius: 2 //el radio de la sombra
     }
 
 });

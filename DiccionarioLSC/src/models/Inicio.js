@@ -51,6 +51,9 @@ const styles = StyleSheet.create({
         color: "white",
         textDecorationLine: "underline", //linea
         fontStyle: "italic",
+        textShadowColor: "#000",//negro
+        textShadowOffset: { width: 5, height: 5 },//que tanto se muestra la sombra
+        textShadowRadius: 10, //radio de la sombra
         marginTop: "2%",
         bottom: "2%"
     },
@@ -83,6 +86,9 @@ const styles = StyleSheet.create({
         //color: "white",
         fontWeight: "bold",
         fontSize: 22,
+        textShadowColor: "#ffffff",
+        textShadowOffset: { width: 2, height: 2 },//que tanto se muestra la sombra
+        textShadowRadius: 1
     }
 
 });
