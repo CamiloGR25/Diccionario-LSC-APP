@@ -5,5 +5,5 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView, FlatList
 
 export default function Letras({ route }) {
     const { letraSeleccionada } = route.params;
-    console.log(letraSeleccionada);
+    console.log("letra seleccionada: " + letraSeleccionada);
 }

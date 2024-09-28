@@ -9,7 +9,7 @@ import * as SplashScreen from 'expo-splash-screen';
 export default function Inicio() {
     const navegacion = useNavigation(); //navegacion a otras pantallas
 
-    const [loaded, error] = useFonts({
+    /*const [loaded, error] = useFonts({
         'ProtestGuerrilla': require('./ProtestGuerrilla-Regular.ttf'),
     });
 
@@ -21,7 +21,7 @@ export default function Inicio() {
 
     if (!loaded && !error) {
         return null;
-    }
+    }*/
 
     return (
         <View style={styles.container}>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     },
 
     titulo: {
-        fontFamily: 'ProtestGuerrilla',
+        // fontFamily: 'ProtestGuerrilla',
         fontSize: 56,
         textAlign: "center",//centrar el texto 
         fontWeight: "bold", //bold

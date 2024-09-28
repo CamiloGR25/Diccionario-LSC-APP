@@ -1,15 +1,5 @@
 {
   "expo": {
-    "plugins": [
-      [
-        "expo-font",
-        {
-          "fonts": [
-            "./assets/fonts/ProtestGuerrilla-Regular.ttf"
-          ]
-        }
-      ]
-    ],
     "name": "DiccionarioLSC",
     "slug": "DiccionarioLSC",
     "version": "1.0.0",
