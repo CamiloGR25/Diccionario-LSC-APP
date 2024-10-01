@@ -31,7 +31,8 @@ export default function Menu() {
                         <View style={style.opcionBtn}>
                             <Image
                                 style={style.imagenOpcion}
-                                source={require("../img/LupaNegra.png")}
+                                source={require("../img/LupaIcon.png")}
+                            //source={require("../img/LupaNegra.png")}
                             />
                             <Text style={style.textoOpcion}>
                                 BUSCAR
@@ -49,8 +50,8 @@ export default function Menu() {
                         <View style={style.opcionBtn}>
                             <Image
                                 style={style.imagenOpcion}
-                                //source={require("../img/Logo2.png")}
-                                source={{ uri: "https://media-public.canva.com/EKKdc/MAEGkaEKKdc/1/tl.png" }}
+                                source={require("../img/LibrosIcon.png")}
+                            //source={{ uri: "https://media-public.canva.com/EKKdc/MAEGkaEKKdc/1/tl.png" }}
                             />
                             <Text style={style.textoOpcion}>
                                 CATEGORIAS
@@ -71,8 +72,8 @@ export default function Menu() {
                         <View style={style.opcionBtn}>
                             <Image
                                 style={style.imagenOpcion}
-                                //source={require("../img/Logo2.png")}
-                                source={{ uri: "https://media-public.canva.com/8mHSM/MAE6UG8mHSM/1/tl.png" }}
+                                source={require("../img/ABCIcon.png")}
+                            //source={{ uri: "https://media-public.canva.com/8mHSM/MAE6UG8mHSM/1/tl.png" }}
                             />
                             <Text style={style.textoOpcion}>
                                 ALFABETO
@@ -90,8 +91,8 @@ export default function Menu() {
                         <View style={style.opcionBtn}>
                             <Image
                                 style={style.imagenOpcion}
-                                //source={require("../img/Logo2.png")}
-                                source={{ uri: "https://media-public.canva.com/nei8U/MAEFiOnei8U/1/tl.png" }}
+                                source={require("../img/SeñasIcon.png")}
+                            //source={{ uri: "https://media-public.canva.com/nei8U/MAEFiOnei8U/1/tl.png" }}
                             />
                             <Text style={style.textoOpcion}>
                                 PRACTICAS
