@@ -21,4 +21,7 @@
 - Instalar los temas de las letras:
   npm install expo-font
 
+- instalar BD farebase:
+  npx expo install firebase
+
 - Iniciar el proyecto: npx expo start

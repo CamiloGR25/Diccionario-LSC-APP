@@ -1,93 +1,62 @@
 import { StatusBar } from "expo-status-bar";
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
 import { Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView, FlatList } from "react-native";
+import { db } from "../data/firebaseConfig";
+import { getDocs, collection } from 'firebase/firestore';
 
 
 export default function Letras({ route }) {
     const { letraSeleccionada } = route.params;
     const navegacion = useNavigation();
 
-    //console.log("letra seleccionada: " + letraSeleccionada);
-    const datosPalabras = [
-        {
-            id: "G01",
-            palabra: "Gracias",
-            img: require("../img/GraciasImg.png"),
-            explicacion: "Posición de la Mano: Coloca la punta de los dedos de una mano (generalmente la mano dominante) en el mentón o cerca de la boca. \n\nMovimiento: Luego, mueve la mano hacia afuera y ligeramente hacia adelante, alejándola de la cara. Este movimiento debe ser suave y fluido."
-        },
-        {
-            id: "H01",
-            palabra: "Hola",
-            img: require("../img/letras/Blanco.png"),
-            explicacion: "----Explicacion de Hola----"
-        },
-        {
-            id: "H02",
-            palabra: "Ejemplo",
-            img: require("../img/letras/Blanco.png"),
-            explicacion: "----Explicacion de ejemplo----"
-        },
-        {
-            id: "H03",
-            palabra: "Ejemplo1",
-            img: require("../img/letras/Blanco.png"),
-            explicacion: "----Explicacion de ejemplo----"
-        },
-        {
-            id: "H04",
-            palabra: "Ejemplo2",
-            img: require("../img/letras/Blanco.png"),
-        },
-        {
-            id: "H05",
-            palabra: "Ejemplo3",
-            img: require("../img/letras/Blanco.png"),
-            explicacion: "----Explicacion de ejemplo----"
-        },
-        {
-            id: "H06",
-            palabra: "Ejemplo4",
-            img: require("../img/letras/Blanco.png"),
-            explicacion: "----Explicacion de ejemplo----"
-        },
-        {
-            id: "H07",
-            palabra: "Ejemplo5",
-            img: require("../img/letras/Blanco.png"),
-            explicacion: "----Explicacion de ejemplo----"
-        },
-        {
-            id: "H08",
-            palabra: "Ejemplo6",
-            img: require("../img/letras/Blanco.png"),
-            explicacion: "----Explicacion de ejemplo----"
-        },
-        {
-            id: "H09",
-            palabra: "Ejemplo7",
-            img: require("../img/letras/Blanco.png"),
-            explicacion: "----Explicacion de ejemplo----"
-        },
-        {
-            id: "H10",
-            palabra: "Ejemplo8",
-            img: require("../img/letras/Blanco.png"),
-            explicacion: "----Explicacion de ejemplo----"
-        }
-    ]
+    // Estado para almacenar los datos de Firestore
+    const [palabras, setPalabras] = useState([]);
 
-    const Item = ({ palabra, img, explicacion }) => (
+    const cargarDatos = async () => {
+        try {
+            const datos = await getDocs(collection(db, "palabra"));
+            const palabraDatos = datos.docs.map(doc => doc.data());
+            //console.log("La base de datos es: ", palabraDatos);
+            setPalabras(palabraDatos); //cargar los datos
+        } catch (error) {
+            console.error("Error al obtener los documentos: ", error);
+        }
+    };
+
+    useEffect(() => {
+        cargarDatos(); // llamamos a la función para obtener los datos
+    }, []);
+
+    /*console.log("------DATOOOOS------: " + JSON.stringify(palabras))
+    //mostrar
+    palabras.map((palabra) => (
+        console.log("mostrar:" + palabra.titulo),
+        console.log("mostrar Explicacion:" + palabra.explicacion)
+
+    ));*/
+
+    //console.log("letra seleccionada: " + letraSeleccionada);
+
+    const Item = ({ palabra, img, posicion, movimiento }) => (
         //Boton y estilo original (el modelo para todos) 
         <TouchableOpacity style={style.opcionBtn}
             onPress={() => {
                 //Se manda a la otra pantalla y se envia la variable letra del data:
-                navegacion.navigate("Palabra", { palabraSeleccionada: palabra, imgSeleccionada: img, explicacionSeleccionada: explicacion })
+                navegacion.navigate("Palabra",
+                    {
+                        palabraSeleccionada: palabra,
+                        imgSeleccionada: img,
+                        posicionSeleccionada: posicion,
+                        movimientoSeleccionado: movimiento
+                    }
+                )
             }
             }
         >
             <Image
                 style={style.imagenOpcion}
-                source={img}
+                source={{ uri: img }}
             />
             <Text style={style.textoOpcion}>{palabra}</Text>
         </TouchableOpacity>
@@ -96,16 +65,17 @@ export default function Letras({ route }) {
     return (
         <View style={style.container}>
 
-            <Text style={style.titulo}>Palabras por la letra: {letraSeleccionada}</Text>
-
             <SafeAreaView>
+                <Text style={style.titulo}>Palabras por la letra: {letraSeleccionada}</Text>
                 <FlatList
-                    data={datosPalabras}
+                    data={palabras}
                     numColumns={2}
                     renderItem={({ item }) =>
                         <Item
                             img={item.img}
-                            palabra={item.palabra}
+                            palabra={item.titulo}
+                            posicion={item.posicion}
+                            movimiento={item.movimiento}
                         />}
                     keyExtractor={item => item.id}
                 />
@@ -116,14 +86,12 @@ export default function Letras({ route }) {
     );
 }
 
-
-
 const style = StyleSheet.create({
     container: {
         flex: 1, //ocupa toda la pantalla
         backgroundColor: "#0e1788",
         position: "relative",
-        alignItems: 'center',
+        alignItems: "center",
     },
     titulo: {
         fontFamily: "Roboto",
