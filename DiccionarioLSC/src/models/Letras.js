@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
 import { Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView, FlatList } from "react-native";
 import { db } from "../data/firebaseConfig";
-import { getDocs, collection } from 'firebase/firestore';
+import { getDocs, collection, where, query } from 'firebase/firestore';
 
 
 export default function Letras({ route }) {
@@ -13,15 +13,30 @@ export default function Letras({ route }) {
     // Estado para almacenar los datos de Firestore
     const [palabras, setPalabras] = useState([]);
 
+    /* const cargarDatos = async () => {
+         try {
+             const datos = await getDocs(collection(db, "palabra"));
+             const palabraDatos = datos.docs.map(doc => doc.data());
+             //console.log("La base de datos es: ", palabraDatos);
+             setPalabras(palabraDatos); //cargar los datos
+         } catch (error) {
+             console.error("Error al obtener los documentos: ", error);
+         }
+     };*/
+
     const cargarDatos = async () => {
         try {
-            const datos = await getDocs(collection(db, "palabra"));
-            const palabraDatos = datos.docs.map(doc => doc.data());
-            //console.log("La base de datos es: ", palabraDatos);
-            setPalabras(palabraDatos); //cargar los datos
-        } catch (error) {
-            console.error("Error al obtener los documentos: ", error);
-        }
+            // Crear una consulta con filtro           
+            const palabrasRef = collection(db, "palabra"); //trae la coleccion
+            const q = query(palabrasRef, where("primeraLetra", "==", letraSeleccionada)); // campo 'primeraLetra' en tus documentos se hace un query
+            const datos = await getDocs(q); //trae los datos de la bd
+
+            const palabraDatos = datos.docs.map(doc => ({ id: doc.id, ...doc.data() })); //mapeo por id de los datos filtrados
+            console.log("Palabras filtradas por letra:", letraSeleccionada, palabraDatos);
+
+            setPalabras(palabraDatos); // cargar lis datis a palabras
+
+        } catch (error) { console.error("Error al obtener los documentos: ", error); }
     };
 
     useEffect(() => {
@@ -33,7 +48,7 @@ export default function Letras({ route }) {
     palabras.map((palabra) => (
         console.log("mostrar:" + palabra.titulo),
         console.log("mostrar Explicacion:" + palabra.explicacion)
-
+ 
     ));*/
 
     //console.log("letra seleccionada: " + letraSeleccionada);

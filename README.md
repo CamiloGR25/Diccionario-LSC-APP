@@ -21,7 +21,14 @@
 - Instalar los temas de las letras:
   npm install expo-font
 
-- instalar BD farebase:
+- Instalar BD farebase:
   npx expo install firebase
+
+- Instalar eas (exportar apk)
+  npm install -g eas-cli
+
+- Exportar APK:
+  eas login (iniciar sesion expo)
+  eas build -p android --profile preview (exportar)
 
 - Iniciar el proyecto: npx expo start

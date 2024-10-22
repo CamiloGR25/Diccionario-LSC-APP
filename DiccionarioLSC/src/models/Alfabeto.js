@@ -150,7 +150,7 @@ export default function Alfabeto() {
         <TouchableOpacity style={style.opcionBtn}
             onPress={() => {
                 //Se manda a la otra pantalla y se envia la variable letra del data:
-                navegacion.navigate("Letras", { letraSeleccionada: letra })
+                navegacion.navigate("Letras", { letraSeleccionada: letra });
             }
             }
         >
