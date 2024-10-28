@@ -6,34 +6,23 @@ import { db } from "../data/firebaseConfig";
 import { getDocs, collection, where, query } from 'firebase/firestore';
 
 export default function Letras({ route }) {
-    const { letraSeleccionada } = route.params;
+    const { categoriaSeleccionada } = route.params;
     const navegacion = useNavigation();
 
     // Estado para almacenar los datos de Firestore
     const [palabras, setPalabras] = useState([]);
 
-    /* const cargarDatos = async () => {
-         try {
-             const datos = await getDocs(collection(db, "palabra"));
-             const palabraDatos = datos.docs.map(doc => doc.data());
-             //console.log("La base de datos es: ", palabraDatos);
-             setPalabras(palabraDatos); //cargar los datos
-         } catch (error) {
-             console.error("Error al obtener los documentos: ", error);
-         }
-     };*/
-
     const cargarDatos = async () => {
         try {
             // Crear una consulta con filtro           
             const palabrasRef = collection(db, "palabra"); //trae la coleccion
-            const q = query(palabrasRef, where("primeraLetra", "==", letraSeleccionada)); // campo 'primeraLetra' en tus documentos se hace un query
+            const q = query(palabrasRef, where("categoria", "==", categoriaSeleccionada)); // campo categoria en tus documentos se hace un query
             const datos = await getDocs(q); //trae los datos de la bd
 
             const palabraDatos = datos.docs.map(doc => ({ id: doc.id, ...doc.data() })); //mapeo por id de los datos filtrados
-            console.log("Palabras filtradas por letra:", letraSeleccionada, palabraDatos);
+            console.log("Palabras filtradas por letra:", categoriaSeleccionada, palabraDatos);
 
-            setPalabras(palabraDatos); // cargar lis datis a palabras
+            setPalabras(palabraDatos); // cargar lis datos a palabras
 
         } catch (error) { console.error("Error al obtener los documentos: ", error); }
     };
@@ -42,15 +31,6 @@ export default function Letras({ route }) {
         cargarDatos(); // llamamos a la función para obtener los datos
     }, []);
 
-    /*console.log("------DATOOOOS------: " + JSON.stringify(palabras))
-    //mostrar
-    palabras.map((palabra) => (
-        console.log("mostrar:" + palabra.titulo),
-        console.log("mostrar Explicacion:" + palabra.explicacion)
- 
-    ));*/
-
-    //console.log("letra seleccionada: " + letraSeleccionada);
 
     const Item = ({ palabra, img, posicion, movimiento }) => (
         //Boton y estilo original (el modelo para todos) 
@@ -80,7 +60,7 @@ export default function Letras({ route }) {
         <View style={style.container}>
 
             <SafeAreaView>
-                <Text style={style.titulo}>Palabras por la letra: {letraSeleccionada}</Text>
+                <Text style={style.titulo}>{categoriaSeleccionada}</Text>
                 <FlatList
                     data={palabras}
                     numColumns={2}
@@ -146,4 +126,5 @@ const style = StyleSheet.create({
         textShadowOffset: { width: 2, height: 2 },//que tanto se muestra la sombra
         textShadowRadius: 2 //el radio de la sombra
     }
+
 });
