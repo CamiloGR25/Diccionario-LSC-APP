@@ -20,7 +20,7 @@ export default function Letras({ route }) {
             const datos = await getDocs(q); //trae los datos de la bd
 
             const palabraDatos = datos.docs.map(doc => ({ id: doc.id, ...doc.data() })); //mapeo por id de los datos filtrados
-            console.log("Palabras filtradas por letra:", categoriaSeleccionada, palabraDatos);
+            //console.log("Palabras filtradas por letra:", categoriaSeleccionada, palabraDatos);
 
             setPalabras(palabraDatos); // cargar lis datos a palabras
 
@@ -32,15 +32,15 @@ export default function Letras({ route }) {
     }, []);
 
 
-    const Item = ({ palabra, img, posicion, movimiento }) => (
+    const Item = ({ palabra, img, posicion, movimiento, imgExplicacion }) => (
         //Boton y estilo original (el modelo para todos) 
         <TouchableOpacity style={style.opcionBtn}
             onPress={() => {
-                //Se manda a la otra pantalla y se envia la variable letra del data:
+                //Se manda a la otra pantalla y se envia la variable:
                 navegacion.navigate("Palabra",
                     {
                         palabraSeleccionada: palabra,
-                        imgSeleccionada: img,
+                        imgSeleccionada: imgExplicacion,
                         posicionSeleccionada: posicion,
                         movimientoSeleccionado: movimiento
                     }
@@ -70,6 +70,7 @@ export default function Letras({ route }) {
                             palabra={item.titulo}
                             posicion={item.posicion}
                             movimiento={item.movimiento}
+                            imgExplicacion={item.imgExplicacion}
                         />}
                     keyExtractor={item => item.id}
                 />
