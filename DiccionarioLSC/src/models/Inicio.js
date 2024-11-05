@@ -1,27 +1,10 @@
 import { StatusBar } from 'expo-status-bar'; //para controlar el stado o estilo
 import { useNavigation } from '@react-navigation/native'; //navegar
 import { Text, StyleSheet, View, Image, TouchableOpacity, Alert } from 'react-native'; //importar los componentes usados en el codigo
-import { useFonts } from 'expo-font';
-import { useEffect } from 'react';
-import * as SplashScreen from 'expo-splash-screen';
 
 //inicio de la funcion llamada para mostrar en pantalla
 export default function Inicio() {
     const navegacion = useNavigation(); //navegacion a otras pantallas
-
-    /*const [loaded, error] = useFonts({
-        'ProtestGuerrilla': require('./ProtestGuerrilla-Regular.ttf'),
-    });
-
-    useEffect(() => {
-        if (loaded || error) {
-            SplashScreen.hideAsync();
-        }
-    }, [loaded, error]);
-
-    if (!loaded && !error) {
-        return null;
-    }*/
 
     return (
         <View style={styles.container}>

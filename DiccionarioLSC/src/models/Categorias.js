@@ -5,7 +5,6 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView, FlatList
 import { db } from "../data/firebaseConfig";
 import { getDocs, collection } from 'firebase/firestore';
 
-
 export default function Categorias() {
 
     const navegacion = useNavigation();
@@ -99,7 +98,7 @@ const style = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 22,
         color: "white",
-        textShadowColor: "#000",//negro
+        textShadowColor: "#000",
         textShadowOffset: { width: 2, height: 2 },//que tanto se muestra la sombra
         textShadowRadius: 2 //el radio de la sombra
     }

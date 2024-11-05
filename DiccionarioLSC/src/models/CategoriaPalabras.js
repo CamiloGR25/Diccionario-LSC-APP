@@ -32,7 +32,7 @@ export default function Letras({ route }) {
     }, []);
 
 
-    const Item = ({ palabra, img, posicion, movimiento, imgExplicacion }) => (
+    const Item = ({ palabra, img, posicion, movimiento, imgExplicacion, video }) => (
         //Boton y estilo original (el modelo para todos) 
         <TouchableOpacity style={style.opcionBtn}
             onPress={() => {
@@ -42,7 +42,8 @@ export default function Letras({ route }) {
                         palabraSeleccionada: palabra,
                         imgSeleccionada: imgExplicacion,
                         posicionSeleccionada: posicion,
-                        movimientoSeleccionado: movimiento
+                        movimientoSeleccionado: movimiento,
+                        videoSeleccionado: video
                     }
                 )
             }
@@ -71,6 +72,7 @@ export default function Letras({ route }) {
                             posicion={item.posicion}
                             movimiento={item.movimiento}
                             imgExplicacion={item.imgExplicacion}
+                            video={item.video}
                         />}
                     keyExtractor={item => item.id}
                 />

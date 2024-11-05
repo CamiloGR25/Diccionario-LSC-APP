@@ -52,7 +52,7 @@ export default function Letras({ route }) {
 
     //console.log("letra seleccionada: " + letraSeleccionada);
 
-    const Item = ({ palabra, img, posicion, movimiento, imgExplicacion }) => (
+    const Item = ({ palabra, img, posicion, movimiento, imgExplicacion, video }) => (
         //Boton y estilo original (el modelo para todos) 
         <TouchableOpacity style={style.opcionBtn}
             onPress={() => {
@@ -62,7 +62,8 @@ export default function Letras({ route }) {
                         palabraSeleccionada: palabra,
                         imgSeleccionada: imgExplicacion,
                         posicionSeleccionada: posicion,
-                        movimientoSeleccionado: movimiento
+                        movimientoSeleccionado: movimiento,
+                        videoSeleccionado: video
                     }
                 )
             }
@@ -91,6 +92,7 @@ export default function Letras({ route }) {
                             posicion={item.posicion}
                             movimiento={item.movimiento}
                             imgExplicacion={item.imgExplicacion}
+                            video={item.video}
                         />}
                     keyExtractor={item => item.id}
                 />
@@ -117,7 +119,6 @@ const style = StyleSheet.create({
         textShadowColor: "#000",//negro
         textShadowOffset: { width: 5, height: 5 },//que tanto se muestra la sombra
         textShadowRadius: 10, //el radio de la sombra
-        //fontStyle: "italic", //que el texto se incline
         marginTop: "10%",
         bottom: "2%"
     },

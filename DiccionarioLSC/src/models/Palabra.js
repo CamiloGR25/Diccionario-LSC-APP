@@ -1,13 +1,15 @@
-import { Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView, FlatList } from "react-native";
+import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
+import { Video, ResizeMode } from 'expo-av';
 
 export default function Palabra({ route }) {
     const { palabraSeleccionada } = route.params;
     const { imgSeleccionada } = route.params;
     const { posicionSeleccionada } = route.params
     const { movimientoSeleccionado } = route.params
+    const { videoSeleccionado } = route.params
 
     return (
-        <View style={style.container}>
+        <ScrollView style={style.container}>
             <Text style={style.titulo}>{palabraSeleccionada}</Text>
             <View style={{ alignItems: "center", }}>
                 <View style={style.imgContenedor}>
@@ -15,12 +17,24 @@ export default function Palabra({ route }) {
                         source={{ uri: imgSeleccionada }} />
                 </View>
             </View>
+
             <Text style={style.subtitulo}>EXPLICACIÓN:</Text>
             <Text style={style.texto}>Posición de la mano: {posicionSeleccionada}</Text>
             <Text style={style.texto}>Movimiento: {movimientoSeleccionado}</Text>
             <Text style={style.subtitulo}>VIDEO EXPLICATIVO:</Text>
 
-        </View>
+            <View style={style.videoContainer}>
+                <Video
+                    source={{ uri: videoSeleccionado }}
+                    style={style.video}
+                    useNativeControls
+                    resizeMode={ResizeMode.CONTAIN}
+                    isLooping={true}
+                />
+            </View>
+
+
+        </ScrollView>
     );
 }
 
@@ -35,7 +49,7 @@ const style = StyleSheet.create({
         textAlign: "center",//centrar el texto 
         fontWeight: "bold",
         color: "white",
-        textShadowColor: "#000",//negro
+        textShadowColor: "#000",
         textShadowOffset: { width: 5, height: 5 },//que tanto se muestra la sombra
         textShadowRadius: 10, //el radio de la sombra
         marginTop: "10%",
@@ -44,12 +58,12 @@ const style = StyleSheet.create({
     subtitulo: {
         fontSize: 24,
         textAlign: "left",//centrar el texto 
-        fontWeight: "bold", //bold
+        fontWeight: "bold",
         color: "white",
-        textShadowColor: "#000",//negro
+        textShadowColor: "#000",
         textShadowOffset: { width: 5, height: 5 },//que tanto se muestra la sombra
         textShadowRadius: 10,
-        marginTop: "7%",
+        marginTop: "4%",
         marginLeft: "5%",
         marginBottom: "3%"
     },
@@ -76,4 +90,14 @@ const style = StyleSheet.create({
         resizeMode: "contain",
         width: "100%"
     },
+    videoContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    video: {
+        width: 350,
+        height: 200,
+        marginBottom: 30
+    }
 });

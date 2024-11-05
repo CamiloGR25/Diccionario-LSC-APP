@@ -21,6 +21,9 @@
 - Instalar los temas de las letras:
   npm install expo-font
 
+- Instalar para videos
+  npx expo install expo-av
+
 - Instalar BD farebase:
   npx expo install firebase
 
