@@ -11,6 +11,7 @@ export default function Categorias() {
 
     // Estado para almacenar los datos de Firestore
     const [categorias, setCategorias] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     //los datos de la categoria:
     const cargarDatos = async () => {
@@ -21,12 +22,22 @@ export default function Categorias() {
             setCategorias(categoriaDatos); //cargar los datos
         } catch (error) {
             console.error("Error al obtener los documentos: ", error);
+        } finally {
+            setLoading(false); // cuando termina, ya no esta cargando
         }
     };
 
     useEffect(() => {
         cargarDatos(); // llamamos a la función para obtener los datos
     }, []);
+
+    if (loading) {
+        return (
+            <View style={style.container}>
+                <Text style={style.loadingText}>Cargando...</Text>
+            </View>
+        );
+    }
 
     //mostrar datos por consola
     /*categorias.map((categoria) => (
@@ -98,6 +109,17 @@ const style = StyleSheet.create({
     textoOpcion: {
         fontWeight: "bold",
         fontSize: 22,
+        color: "white",
+        textShadowColor: "#000",
+        textShadowOffset: { width: 2, height: 2 },//que tanto se muestra la sombra
+        textShadowRadius: 2 //el radio de la sombra
+    },
+    loadingText: {
+        flex: 1,
+        textAlign: "center",
+        marginTop: "10%",
+        fontWeight: "bold",
+        fontSize: 40,
         color: "white",
         textShadowColor: "#000",
         textShadowOffset: { width: 2, height: 2 },//que tanto se muestra la sombra

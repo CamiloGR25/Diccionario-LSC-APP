@@ -11,6 +11,7 @@ export default function Letras({ route }) {
 
     // Estado para almacenar los datos de Firestore
     const [palabras, setPalabras] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const cargarDatos = async () => {
         try {
@@ -22,15 +23,37 @@ export default function Letras({ route }) {
             const palabraDatos = datos.docs.map(doc => ({ id: doc.id, ...doc.data() })); //mapeo por id de los datos filtrados
             //console.log("Palabras filtradas por letra:", categoriaSeleccionada, palabraDatos);
 
+            //ordenar por orden especifico si se requiere
+            const tieneOrden = palabraDatos.some(item => item.orden !== undefined);
+
+            if (tieneOrden) {
+                //ordena el arreglo modificando su posición
+                palabraDatos.sort((a, b) => {
+                    const ordenA = a.orden ?? Infinity;  //si no tiene orden se pone de ultimo 
+                    const ordenB = b.orden ?? Infinity;
+                    return ordenA - ordenB; //validar el orden
+                });
+            }
+
+
             setPalabras(palabraDatos); // cargar lis datos a palabras
 
-        } catch (error) { console.error("Error al obtener los documentos: ", error); }
+        } catch (error) { console.error("Error al obtener los documentos: ", error); } finally {
+            setLoading(false); // cuando termina, ya no esta cargando
+        }
     };
 
     useEffect(() => {
         cargarDatos(); // llamamos a la función para obtener los datos
     }, []);
 
+    if (loading) {
+        return (
+            <View style={style.container}>
+                <Text style={style.loadingText}>Cargando...</Text>
+            </View>
+        );
+    }
 
     const Item = ({ palabra, img, posicion, movimiento, imgExplicacion, video }) => (
         //Boton y estilo original (el modelo para todos) 
@@ -126,6 +149,17 @@ const style = StyleSheet.create({
         fontSize: 22,
         color: "white",
         textShadowColor: "#000",//negro
+        textShadowOffset: { width: 2, height: 2 },//que tanto se muestra la sombra
+        textShadowRadius: 2 //el radio de la sombra
+    },
+    loadingText: {
+        flex: 1,
+        textAlign: "center",
+        marginTop: "10%",
+        fontWeight: "bold",
+        fontSize: 40,
+        color: "white",
+        textShadowColor: "#000",
         textShadowOffset: { width: 2, height: 2 },//que tanto se muestra la sombra
         textShadowRadius: 2 //el radio de la sombra
     }

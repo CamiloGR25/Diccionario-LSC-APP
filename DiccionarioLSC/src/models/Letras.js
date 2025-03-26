@@ -11,7 +11,7 @@ export default function Letras({ route }) {
 
     // Estado para almacenar los datos de Firestore
     const [palabras, setPalabras] = useState([]);
-
+    const [loading, setLoading] = useState(true);
     /* const cargarDatos = async () => {
          try {
              const datos = await getDocs(collection(db, "palabra"));
@@ -35,13 +35,22 @@ export default function Letras({ route }) {
 
             setPalabras(palabraDatos); // cargar lis datis a palabras
 
-        } catch (error) { console.error("Error al obtener los documentos: ", error); }
+        } catch (error) { console.error("Error al obtener los documentos: ", error); } finally {
+            setLoading(false); // cuando termina, ya no esta cargando
+        }
     };
 
     useEffect(() => {
         cargarDatos(); // llamamos a la función para obtener los datos
     }, []);
 
+    if (loading) {
+        return (
+            <View style={style.container}>
+                <Text style={style.loadingText}>Cargando...</Text>
+            </View>
+        );
+    }
     /*console.log("------DATOOOOS------: " + JSON.stringify(palabras))
     //mostrar
     palabras.map((palabra) => (
@@ -145,6 +154,17 @@ const style = StyleSheet.create({
         fontSize: 22,
         color: "white",
         textShadowColor: "#000",//negro
+        textShadowOffset: { width: 2, height: 2 },//que tanto se muestra la sombra
+        textShadowRadius: 2 //el radio de la sombra
+    },
+    loadingText: {
+        flex: 1,
+        textAlign: "center",
+        marginTop: "10%",
+        fontWeight: "bold",
+        fontSize: 40,
+        color: "white",
+        textShadowColor: "#000",
         textShadowOffset: { width: 2, height: 2 },//que tanto se muestra la sombra
         textShadowRadius: 2 //el radio de la sombra
     }
