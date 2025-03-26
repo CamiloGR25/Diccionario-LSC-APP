@@ -12,6 +12,7 @@ export default function Categorias() {
     // Estado para almacenar los datos de Firestore
     const [categorias, setCategorias] = useState([]);
 
+    //los datos de la categoria:
     const cargarDatos = async () => {
         try {
             const datos = await getDocs(collection(db, "categoria"));

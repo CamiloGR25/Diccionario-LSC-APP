@@ -27,9 +27,11 @@ export default function Palabra({ route }) {
                 <Video
                     source={{ uri: videoSeleccionado }}
                     style={style.video}
-                    useNativeControls
+                    //useNativeControls
                     resizeMode={ResizeMode.CONTAIN}
                     isLooping={true}
+                    shouldPlay
+
                 />
             </View>
 

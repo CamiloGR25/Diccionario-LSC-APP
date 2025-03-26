@@ -1,11 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native'; //container de navegacion
 import { createNativeStackNavigator } from '@react-navigation/native-stack'; //el objeto para navegar
-import Inicio from './src/models/Inicio'; //se importa el modulo 
-import Menu from './src/models/Menu';
+import Inicio from './src/views/Inicio'; //se importa el modulo 
+import Menu from './src/views/Menu';
 import Alfabeto from './src/models/Alfabeto';
-import Buscar from './src/models/Buscar';
-import Categorias from './src/models/Categorias';
-import Practicas from './src/models/Practicas'
+import Buscar from './src/views/Buscar';
+import Categorias from './src/views/Categorias';
+import Practicas from './src/views/Practicas'
 import Letras from './src/models/Letras';
 import Palabra from './src/models/Palabra';
 import CategoriaPalabras from './src/models/CategoriaPalabras'
